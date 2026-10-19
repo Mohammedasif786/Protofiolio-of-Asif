@@ -1,23 +1,36 @@
-import { useState } from "react";
+import { Drawer } from "@mui/material";
+import { useState, type SetStateAction } from "react";
 import { TiThList } from "react-icons/ti";
 
-function MiniNav() {
+interface Pardon {
+  menu: boolean;
+  setMenu: React.Dispatch<SetStateAction<boolean>>;
+}
+
+function MiniNav({ menu, setMenu }: Pardon) {
+  const items = [
+    ["Projects", "#project"],
+    ["Skills", "#Skills"],
+    ["Education", "#edu"],
+    ["Contact", "#contact"],
+  ];
+
   return (
-    <div>
-      <ul className="border bg-gray-600 w-96 h-96 text-left space-y-3 text-4xl even:bg-gray-800 rounded-lg">
-        <li>Project</li>
-        <li>Skills</li>
-        <li>Education</li>
-        <li>Contact Me</li>
-      </ul>
-    </div>
+    <Drawer open={menu} onClose={() => setMenu(false)}>
+      <nav className="flex flex-col w-48 gap-4 p-4">
+        {items.map(([label, href]) => (
+          <a key={href} href={href} onClick={() => setMenu(false)}>
+            {label}
+          </a>
+        ))}
+      </nav>
+    </Drawer>
   );
 }
 
 function NavInfo() {
   const [menu, setMenu] = useState(false);
   const OnMenu = () => setMenu((prev) => !prev);
-  console.log(menu);
 
   return (
     <div className="lg:border-none border-2 h-fit rounded-full m-4 p-4 ">
@@ -57,7 +70,7 @@ function NavInfo() {
       </div>
 
       <TiThList className="lg:hidden" onClick={OnMenu} />
-      {menu && <MiniNav />}
+      <MiniNav menu={menu} setMenu={setMenu} />
     </div>
   );
 }
