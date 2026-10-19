@@ -15,7 +15,7 @@ function Headerbody() {
           Hi ✋, i'm <br />
           Mohammed Asif
           <br />
-          Frontend Developer
+          Full Stack Developer(MERN)
           {tag2}
         </div>
         <img
