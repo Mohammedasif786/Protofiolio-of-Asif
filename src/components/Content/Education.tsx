@@ -1,6 +1,6 @@
 function Education() {
   return (
-    <div className="border-2 w-4/4 content-center max-h-3/4 p-4 text-2xl text-center">
+    <div id="edu" className="border-2 w-4/4 content-center max-h-3/4 p-4 text-2xl text-center">
       <h1 className="text-2xl font-bold mb-8">-:My Education:-</h1>
       <div className="lg:grid lg:grid-cols-2">
         <div className="flex lg:flex-col gap-4 justify-center items-center mb-12">
@@ -20,7 +20,7 @@ function Education() {
           <img
             src="https://content.jdmagicbox.com/comp/gulbarga/c9/9999p8472.8472.190911014249.i8c9/catalogue/khaja-bandanawaz-university-khaja-colony-gulbarga-universities-zymk8kd4ed.jpg"
             alt="KBU"
-            className="lg:w-70 lg:relative lg:left-37"
+            className="lg:w-70 lg:relative lg:left-42"
           />
           <div className="text-lg">
             <h2 className="font-bold">Khaja Bandanawaz University</h2>

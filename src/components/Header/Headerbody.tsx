@@ -26,7 +26,7 @@ function Headerbody() {
         />
       </div>
       <div className="flex justify-center float-end">
-        <div className="absolute top-0 right-0 lg:right-70 lg:mx-auto">
+        <div className="absolute top-0 right-0 lg:right-80 lg:mx-auto">
           <NavInfo />
         </div>
       </div>

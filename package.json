@@ -9,6 +9,9 @@
     "build": "bun run build.ts"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^9.5.0",
     "@types/react-icons": "^3.0.0",
     "bun-plugin-tailwind": "^0.1.2",
     "react": "^19",

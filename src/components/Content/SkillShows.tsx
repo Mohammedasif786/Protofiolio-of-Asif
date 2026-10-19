@@ -89,7 +89,7 @@ function BackendSkills() {
 }
 function SkillShows() {
   return (
-    <div className="border-2 w-4/4 content-center max-h-3/4 p-4 text-2xl text-center">
+    <div id="Skills" className="border-2 w-4/4 content-center max-h-3/4 p-4 text-2xl text-center">
       <h1 className="text-2xl font-bold mb-8">-:My Skills:-</h1>
       <div className="lg:flex lg:flex-col lg:justify-center lg:gap-8">
       <FrontendSkills />

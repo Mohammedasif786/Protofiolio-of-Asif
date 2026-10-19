@@ -3,7 +3,7 @@ import TPT from "../../Images/TPT.png";
 
 function ProjectCard() {
   return (
-    <div className="border-2 w-4/4 my-8 content-center max-h-3/4 p-4 rounded-2xl text-2xl h-96 text-center shadow-xl shadow-gray-500/50 lg:flex lg:gap-4 lg:justify-center lg:items-center lg:border-0 lg:shadow-none lg:bg-gray-300">
+    <div id="project" className="border-2 w-4/4 my-8 content-center max-h-3/4 p-4 rounded-2xl text-2xl h-96 text-center shadow-xl shadow-gray-500/50 lg:flex lg:gap-4 lg:justify-center lg:items-center lg:border-0 lg:shadow-none lg:bg-gray-300">
       <img
         src={TPT}
         alt="Typing website"
