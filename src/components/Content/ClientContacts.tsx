@@ -1,7 +1,7 @@
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 
-const tabs = ["All", "Ayn"];
+const tabs = ["All", "Anonymous"];
 function MuiTabBarPure() {
   const [activeTab, setActiveTab] = useState("All");
 
