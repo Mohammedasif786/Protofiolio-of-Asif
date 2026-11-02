@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^9.5.0",
     "@types/react-icons": "^3.0.0",
+    "axios": "^1.21.0",
     "bun-plugin-tailwind": "^0.1.2",
     "mongoose": "^9.11.2",
     "react": "^19",

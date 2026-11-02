@@ -1,5 +1,6 @@
-import { Box, Button } from "@mui/material";
-import React, { use, useState } from "react";
+import { Box, Button, keyframes } from "@mui/material";
+import axios from "axios";
+import React, { use, useEffect, useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdNavigateNext } from "react-icons/md";
 
@@ -49,15 +50,16 @@ function MuiTabBarPure() {
     </Box>
   );
 }
-function ClientInformation() {
+
+function ClientInformation({ email, message }: ClientReq) {
   return (
     <div className="flex gap-4 my-2 *:flex-col border">
       <div id="icon">
         <FaRegUserCircle size={100 / 2} />
       </div>
       <div id="content">
-        <h1 className="text-2xl font-bold">Email@famous.com</h1>
-        <p className="text-xl font-light tracking-wider">Message of the...</p>
+        <h1 className="text-2xl font-bold">{email}</h1>
+        <p className="text-xl font-light tracking-wider">{message}</p>
       </div>
       <div id="next" className="ml-auto flex flex-col items-center">
         <p>{new Date().toDateString()}</p>
@@ -67,32 +69,47 @@ function ClientInformation() {
   );
 }
 
-export interface ClientReq<T = string> {
-  Icon?: T;
-  email: T;
-  message: T;
+export interface ClientReq {
+  Icon?: React.ElementType;
+  email: string;
+  message: string;
 }
 
 function ClientContacts() {
-  const [clientData, setClientData] = useState<ClientReq>({
-    email: "",
-    message: "",
-  });
+  const [clientData, setClientData] = useState<ClientReq[]>([]);
+
+  const giveData = async (): Promise<ClientReq[]> => {
+    try {
+      const res = await axios.get("http://localhost:4000/api/users");
+      return res.data;
+    } catch (error: any) {
+      console.log(error.name);
+      console.error(error.message);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    giveData()
+      .then((users) => setClientData(users))
+      .catch((err) => console.log({ name: err.name, msg: err.message }));
+  }, []);
 
   return (
     <Box
       component={"div"}
       className="grid h-screen place-content-center mx-auto"
     >
-      <h1 className="text-3xl font-bold">Clients & Messages</h1>
+      <h1 className="text-3xl mx-auto relative bottom-12 font-bold">
+        Clients & Messages
+      </h1>
       <div className="flex gap-4">
         <MuiTabBarPure />
       </div>
       <div className="h-96 border">
-        <ClientInformation />
-        <ClientInformation />
-        <ClientInformation />
-        <ClientInformation />
+        {clientData.map((user) => (
+          <ClientInformation key={user.email} {...user} />
+        ))}
       </div>
     </Box>
   );
