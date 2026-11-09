@@ -1,13 +1,18 @@
-import { Box, Button, keyframes } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import axios from "axios";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdNavigateNext } from "react-icons/md";
 
-const tabs = ["All", "Anonymous"];
-function MuiTabBarPure() {
-  const [activeTab, setActiveTab] = useState("All");
-
+const tabs = ["All", "Clients", "Anonymous"] as const;
+type ClientTab = (typeof tabs)[number];
+function MuiTabBarPure({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab: ClientTab;
+  onTabChange: (tab: ClientTab) => void;
+}) {
   return (
     <Box
       sx={{
@@ -22,7 +27,7 @@ function MuiTabBarPure() {
         return (
           <Button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => onTabChange(tab)}
             disableRipple
             sx={{
               fontFamily: "monospace",
@@ -58,7 +63,7 @@ function ClientInformation({ email, message }: ClientReq) {
         <FaRegUserCircle size={100 / 2} />
       </div>
       <div id="content">
-        <h1 className="text-2xl font-bold">{email}</h1>
+        <h1 className="text-2xl font-bold">{email?.trim() || "Anonymous"}</h1>
         <p className="text-xl font-light tracking-wider">{message}</p>
       </div>
       <div id="next" className="ml-auto flex flex-col items-center">
@@ -71,12 +76,13 @@ function ClientInformation({ email, message }: ClientReq) {
 
 export interface ClientReq {
   Icon?: React.ElementType;
-  email: string;
+  email?: string;
   message: string;
 }
 
 function ClientContacts() {
   const [clientData, setClientData] = useState<ClientReq[]>([]);
+  const [activeTab, setActiveTab] = useState<ClientTab>("All");
 
   const giveData = async (): Promise<ClientReq[]> => {
     try {
@@ -95,6 +101,11 @@ function ClientContacts() {
       .catch((err) => console.log({ name: err.name, msg: err.message }));
   }, []);
 
+  const visibleClientData =
+    activeTab === "Anonymous"
+      ? clientData.filter((user) => !user.email?.trim())
+      : clientData;
+
   return (
     <Box
       component={"div"}
@@ -104,11 +115,14 @@ function ClientContacts() {
         Clients & Messages
       </h1>
       <div className="flex gap-4">
-        <MuiTabBarPure />
+        <MuiTabBarPure activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
       <div className="h-96 border">
-        {clientData.map((user) => (
-          <ClientInformation key={user.email} {...user} />
+        {visibleClientData.map((user, index) => (
+          <ClientInformation
+            key={user.email?.trim() || `anonymous-${index}`}
+            {...user}
+          />
         ))}
       </div>
     </Box>

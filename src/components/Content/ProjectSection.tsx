@@ -3,7 +3,10 @@ import TPT from "../../Images/TPT.png";
 
 function ProjectCard() {
   return (
-    <div id="project" className="border-2 w-4/4 my-8 content-center max-h-3/4 p-4 rounded-2xl text-2xl h-96 text-center shadow-xl shadow-gray-500/50 lg:flex lg:gap-4 lg:justify-center lg:items-center lg:border-0 lg:shadow-none lg:bg-gray-300">
+    <div
+      id="project"
+      className="border-2 w-4/4 my-8 content-center max-h-3/4 p-4 rounded-2xl text-2xl h-96 text-center shadow-xl shadow-gray-500/50 lg:flex lg:gap-4 lg:justify-center lg:items-center lg:border-0 lg:shadow-none lg:bg-gray-300"
+    >
       <img
         src={TPT}
         alt="Typing website"
@@ -14,7 +17,8 @@ function ProjectCard() {
           Typing Project
         </h1>
         <p className="text-center text-lg lg:text-start">
-         A productive web application to manage task, team and deadlines with a clean and modern interface
+          A productive web application to manage task, team and deadlines with a
+          clean and modern interface
         </p>
         <div className="flex justify-center lg:justify-start lg:px-2 gap-4 mt-4 ">
           <img

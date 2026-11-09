@@ -1,6 +1,7 @@
 import { Drawer } from "@mui/material";
 import { useState, type SetStateAction } from "react";
 import { TiThList } from "react-icons/ti";
+import "../../../index.css";
 
 interface Pardon {
   menu: boolean;
@@ -16,8 +17,23 @@ function MiniNav({ menu, setMenu }: Pardon) {
   ];
 
   return (
-    <Drawer open={menu} onClose={() => setMenu(false)}>
-      <nav className="flex flex-col w-48 gap-4 p-4">
+    <Drawer
+      open={menu}
+      onClose={() => setMenu(false)}
+      slotProps={{
+        paper: {
+          sx: {
+            backgroundColor: "transparent",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            radius: "7px",
+            borderRight: "1px solid rgba(255, 255, 255, 0.95)",
+            boxShadow: "2px 0 10px 2px rgba(255, 255, 255, 0.5)",
+          },
+        },
+      }}
+    >
+      <nav className="flex flex-col h-screen w-48 gap-4 text-white space-y-2 p-4 GlassMenu font-semibold">
         {items.map(([label, href]) => (
           <a key={href} href={href} onClick={() => setMenu(false)}>
             {label}
