@@ -1,4 +1,3 @@
-import { serve } from "bun";
 import index from "./index.html";
 import ConnectDB from "./backend/db/client";
 import clientSchema from "./backend/schema/Client.Shema";
@@ -33,6 +32,7 @@ const server = Bun.serve({
   routes: {
     "/": index,
     "/DevClients": index,
+    "/FeedBack": index,
     "/api/users": {
       GET: handle(async () => {
         const user = await Client.find();
